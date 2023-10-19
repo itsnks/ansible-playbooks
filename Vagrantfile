@@ -31,13 +31,17 @@ Vagrant.configure("2") do |config|
       :cpu => 1,
       :ip => "192.168.54.5"
     }
-  ]  
-  config.vm.box = "debian/bullseye64"
-  config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = "1024"
-  end
+  ]
+  boxes.each do |conf|
+    config.vm.define conf[:name] do config
+      config.vm.hostname = conf[:name]
+      config.vm.box = conf[:box]
+      config.vm.network :private_network, ip: conf[:ip]
+      config.vm.synced_folder "../data", "/vagrant_data"
+      config.vm.provider :virtualbox do |vb|
+        vb.memory = conf[:ram]
+        vb.cpus = conf[:cpu]
+      end
     
     config.vm.provision "shell", inline: <<-SHELL
       apt-get update
