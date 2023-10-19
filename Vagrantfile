@@ -34,6 +34,7 @@ Vagrant.configure("2") do |config|
   ]
   boxes.each do |conf|
     config.vm.define conf[:name] do config
+      config.ssh.insert_key = false
       config.vm.hostname = conf[:name]
       config.vm.box = conf[:box]
       config.vm.network :private_network, ip: conf[:ip]
