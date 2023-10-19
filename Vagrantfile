@@ -43,10 +43,10 @@ Vagrant.configure("2") do |config|
         vb.memory = conf[:ram]
         vb.cpus = conf[:cpu]
       end
-    
     config.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y apache2
     SHELL
+    end
   end
-    
+end  
