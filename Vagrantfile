@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
       config.vm.hostname = conf[:name]
       config.vm.box = conf[:box]
       config.vm.network :private_network, ip: conf[:ip]
-      config.vm.synced_folder "../data", "/vagrant_data"
+      config.vm.synced_folder ".", "/opt/vagrant", id: "vagrant-root", disabled: true
       config.vm.provider :virtualbox do |vb|
         vb.memory = conf[:ram]
         vb.cpus = conf[:cpu]
