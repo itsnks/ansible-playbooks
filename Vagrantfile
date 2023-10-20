@@ -43,10 +43,10 @@ Vagrant.configure("2") do |config|
         vb.memory = conf[:ram]
         vb.cpus = conf[:cpu]
       end
-      config.vm.provision "shell", inline: <<-SHELL
-        apt-get update
-        apt-get install -y apache2
-      SHELL
+      config.vm.provision :file do |file|
+        file.source = 'keygen.sh'
+        file.destination = '/home/vagrant'
+      end
       config.vm.provision "shell", path: "bootstrap.sh"
     end
   end
