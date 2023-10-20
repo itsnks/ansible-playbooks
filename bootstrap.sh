@@ -9,3 +9,7 @@ echo -e "192.168.54.5 ansible-host ansible-host \n192.168.54.10 test1.demo.com n
 
 #install necessary packages
 sudo apt update && sudo apt install -y curl net-tools curl wget python3-pip
+
+if [[$(hostname) = "ansible-host"]]; then
+sudo pip3 install ansible
+fi
