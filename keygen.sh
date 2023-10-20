@@ -13,3 +13,6 @@ cd $PROJECT_DIRECTORY
 
 echo -e "ansible-host\n\n[debian1]\nnode1\n\n[debian2]\nnode2\n\n[debian3]\nnode3" > inventory
 echo -e "[defaults]\ninventory = inventory" > ansible.cfg
+
+
+ansible all -i inventory -m "shell" -a "uptime"
