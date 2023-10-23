@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
       end
       config.vm.provision :file do |file|
         file.source = 'keygen.sh'
-        file.destination = '/home/vagrant'
+        file.destination = '/home/vagrant/'
       end
       config.vm.provision "shell", path: "bootstrap.sh"
     end
