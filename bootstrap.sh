@@ -16,3 +16,7 @@ sudo apt update && sudo apt install -y curl net-tools curl wget python3-pip
 if [[$(hostname) = "ansible-host"]]; then
 sudo pip3 install ansible
 fi
+
+#because I wrote this in windows and does not want to work on debian for some reason
+sudo apt install dos2unix
+dos2unix /home/vagrant/keygen.sh
