@@ -16,12 +16,14 @@ echo -e "192.168.56.17 ansible-host ansible-host\n192.168.56.15 web1.demo.com we
 # Installing necessary packages 
 
 if [[ $(hostname) != "web3.demo.com" ]]; then
-sudo apt update && sudo apt -y install curl wget net-tools iputils-ping python3-pip sshpass
+sudo apt update && sudo apt -y install curl wget net-tools iputils-ping python3-pip sshpass dos2unix
 else
-sudo yum update && sudo yum -y install curl wget net-tools python3-pip
+sudo yum update && sudo yum -y install curl wget net-tools python3-pip dos2unix
 fi
 # Install ansible using pip only in ansible-host node
 
 if [[ $(hostname) = "ansible-host" ]]; then
   sudo pip3 install ansible
 fi
+
+dos2unix /home/vagrant/key_gen.sh
