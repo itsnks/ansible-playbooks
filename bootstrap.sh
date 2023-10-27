@@ -26,4 +26,6 @@ if [[ $(hostname) = "ansible-host" ]]; then
   sudo pip3 install ansible
 fi
 
+#convert keygen.sh file into unix format in case you're syncing from windows host, can disable this step if not needed
+#this thing below has driven me clinically insane, lord have mercy on me
 dos2unix /home/vagrant/key_gen.sh
