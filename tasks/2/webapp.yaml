@@ -20,3 +20,8 @@
       apt:
         name: mariadb-server
         state: present
+    - name: start and enable MySQL
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
