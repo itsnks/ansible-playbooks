@@ -12,3 +12,11 @@
         name: apache2
         state: started
         enabled: yes
+- name: setup a DB server
+  hosts: dbsrvgrp
+  become: yes
+  tasks:
+    - name: Install MySQL
+      apt:
+        name: mariadb-server
+        state: present
