@@ -1,1 +1,9 @@
 ---
+- name: setup a webserver
+  hosts: websrvgrp
+  become: yes
+  tasks:
+    - name: Install apache2
+      apt:
+        name: apache2
+        state: present
