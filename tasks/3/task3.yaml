@@ -1,0 +1,30 @@
+---
+- name: setup webserver
+  hosts: websrvgrp
+  become: yes
+  tasks:
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+    - name: start and enable apache2
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+    - name: deploy index.html to apache2
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+- name: setup dbserver
+  hosts: dbsrvgrp
+  become: yes
+  tasks:
+    - name: install mariadb
+      apt:
+        name: mariadb-server
+        state: present
+    - name: start and enable mariadb
+      service:
+        name: mariadb-server
+        state: started
