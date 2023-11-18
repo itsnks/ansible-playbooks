@@ -32,4 +32,9 @@
       mysql_db:
         name: testdb
         state: present
-
+    - name: create db user admin
+      mysql_user:
+        name: admin
+        password: Test@123
+        priv: '*.*:ALL'
+        state: present
