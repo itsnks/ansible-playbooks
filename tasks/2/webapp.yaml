@@ -12,6 +12,10 @@
         name: apache2
         state: started
         enabled: yes
+    - name: copy index.html to target dir
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
 - name: setup a DB server
   hosts: dbsrvgrp
   become: yes
