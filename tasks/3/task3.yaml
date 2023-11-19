@@ -26,8 +26,9 @@
         state: present
     - name: start and enable mariadb
       service:
-        name: mariadb-server
+        name: mariadb
         state: started
+        enabled: yes
     - name: create a db
       mysql_db:
         name: testdb
