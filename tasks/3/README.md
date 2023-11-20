@@ -1,4 +1,4 @@
-## Implementation of database
+## Creation of database
 
 - ansible.cfg is configured with path for inventory file and log file
 - it also has maximum number of forks set to 5
