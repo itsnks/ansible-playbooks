@@ -1,0 +1,57 @@
+---
+- name: install webserver
+  hosts: websrvgrp
+  become: yes
+  tasks:
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+    - name: start and enable apache2
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+    - name: copy index file
+      copy:
+        src: indec.html
+        dest: /var/www/html/index.html
+- name: setup dbserver
+  hosts: dbsrvgrp
+  become: yes
+  vars:
+    dbname: testdb3
+    dbuser: dev3
+    dbuserpass: Test@123
+  tasks:
+    - debug:
+        var: dbname
+    - debug:
+        msg: "dbname is: {{dbname}}"
+    - debug:
+        msg: "dbuser is: {{dbuser}}"
+    - name: isntall mariadb
+      apt:
+        name: mariadb-server
+        state: present
+    - name: install pymysql
+      apt:
+        name: pymysql
+        state: present
+    - name: start and enable mariadb
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+    - name: create db
+      mysql_db:
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        name: {{dbname}}
+        state: present
+    - name: create db user
+      mysql_user:
+        login_unix_socker: /var/run/mysqld/mysqld.sock
+        name: {{dbuser}}
+        password: {{dbuserpass}}
+        privilege: '*.*ALL'
+        state: present
