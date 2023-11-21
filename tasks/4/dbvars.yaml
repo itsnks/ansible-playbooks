@@ -15,6 +15,10 @@
 - name: create dbserver
   hosts: dbsrvgrp
   become: yes
+  vars:
+    dbname: testdb2
+    dbusr: dev1
+    dbusrpass: Test@123
   tasks:
     - name: install mariadb
       apt:
@@ -32,12 +36,12 @@
     - name: create db
       mysql_db:
         login_unix_socket: /var/run/mysqld/mysqld.sock
-        name: 
+        name: "{{dbname}}"
         state: present
     - name: create db user
       mysql_user:
         login_unix_socket: /var/run/mysqld/mysqld.sock
-        name:
-        password:
+        name:"{{dbusr}}"
+        password: "{{dbusrpass}}"
         priv: '*.*:ALL'
         state: present
