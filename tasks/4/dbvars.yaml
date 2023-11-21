@@ -20,6 +20,10 @@
     dbusr: dev1
     dbusrpass: Test@123
   tasks:
+    - debug:
+      var: dbname
+    - debug:
+      msg: "dbname is: {{dbname}}"
     - name: install mariadb
       apt:
         name: mariadb-server
