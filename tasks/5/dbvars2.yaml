@@ -1,5 +1,5 @@
 ---
-- name: install webserver
+- name: setup webserver
   hosts: websrvgrp
   become: yes
   tasks:
@@ -36,7 +36,7 @@
         state: present
     - name: install pymysql
       apt:
-        name: pymysql
+        name: python3-pymysql
         state: present
     - name: start and enable mariadb
       service:
@@ -46,12 +46,12 @@
     - name: create db
       mysql_db:
         login_unix_socket: /var/run/mysqld/mysqld.sock
-        name: {{dbname}}
+        name: "{{dbname}}"
         state: present
     - name: create db user
       mysql_user:
         login_unix_socker: /var/run/mysqld/mysqld.sock
-        name: {{dbuser}}
-        password: {{dbuserpass}}
+        name: "{{dbuser}}"
+        password: "{{dbuserpass}}"
         privilege: '*.*ALL'
         state: present
