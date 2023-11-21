@@ -21,9 +21,9 @@
     dbusrpass: Test@123
   tasks:
     - debug:
-      var: dbname
+        var: dbname
     - debug:
-      msg: "dbname is: {{dbname}}"
+        msg: "dbname is: {{dbname}}"
     - name: install mariadb
       apt:
         name: mariadb-server
