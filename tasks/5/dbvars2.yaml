@@ -53,5 +53,5 @@
         login_unix_socket: /var/run/mysqld/mysqld.sock
         name: "{{dbuser}}"
         password: "{{dbuserpass}}"
-        priv: '*.*ALL'
+        priv: '*.*:ALL'
         state: present
