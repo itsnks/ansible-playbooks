@@ -14,7 +14,7 @@
         enabled: yes
     - name: copy index file
       copy:
-        src: indec.html
+        src: index.html
         dest: /var/www/html/index.html
 - name: setup dbserver
   hosts: dbsrvgrp
