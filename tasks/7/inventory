@@ -1,8 +1,12 @@
 web1 ansible_host=192.168.56.15 ansible_user=vagrant
 db1 ansible_host=192.168.56.16 ansible_user=vagrant
+web2 ansible_host=192.168.56.18 ansible_user=vagrant
 
 [websrvgrp]
 web1
+
+[centossrvgrp]
+web2
 
 [dbsrvgrp]
 db1
