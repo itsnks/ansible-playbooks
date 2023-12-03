@@ -19,10 +19,6 @@
 - name: setup dbserver
   hosts: dbsrvgrp
   become: yes
-  vars:
-    dbname: testdb3
-    dbuser: dev3
-    dbuserpass: Test@123
   tasks:
     - debug:
         var: dbname
