@@ -9,3 +9,9 @@
         state: present
       when:
         ansible_distribution == "Ubuntu"
+    - name: install ntp server on centos
+      yum:
+        name: ntp
+        state: present
+      when:
+        ansible_distribution == "Centos"
