@@ -1,0 +1,7 @@
+---
+- name: fact variables test
+  hosts: all
+  tasks:
+    - name: OS name
+      debug:
+        var: ansible_distribution
