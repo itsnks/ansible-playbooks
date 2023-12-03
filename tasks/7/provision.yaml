@@ -2,9 +2,10 @@
 - name: provision
   hosts: all
   become: yes
-  taska:
+  tasks:
     - name: install ntp server on ubunty
       apt:
         name: ntp
         state: present
-        
+      when:
+        ansible_distribution == "Ubuntu"
