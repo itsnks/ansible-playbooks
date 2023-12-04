@@ -1,0 +1,31 @@
+---
+- name: provision
+  hosts: all
+  become: yes
+  tasks:
+    - name: install apache server on ubuntu
+      apt:
+        name: apache2
+        state: present
+      when:
+        ansible_distribution == "Ubuntu"
+    - name: install nginx server on centos
+      yum:
+        name: nginx
+        state: present
+      when:
+        ansible_distribution == "CentOS"
+    - name: start and enable apache2 on ubuntu distros
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+      when:
+        ansible_distribution == "Ubuntu"
+    - name: start and enable nginx on centos distros
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      when:
+        ansible_distribution == "CentOS"
