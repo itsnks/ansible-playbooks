@@ -3,15 +3,15 @@
   hosts: all
   become: yes
   tasks:
-    - name: install ntp server on ubunty
+    - name: install apache server on ubuntu
       apt:
-        name: ntp
+        name: apache2
         state: present
       when:
         ansible_distribution == "Ubuntu"
-    - name: install ntp server on centos
+    - name: install nginx server on centos
       yum:
-        name: ntp
+        name: nginx
         state: present
       when:
-        ansible_distribution == "Centos"
+        ansible_distribution == "CentOS"
