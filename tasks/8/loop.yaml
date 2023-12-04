@@ -1,0 +1,31 @@
+---
+- name: provision server with loops and decisions
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install NTP server on Ubuntu nodes
+      apt:
+        name: chrony
+        state: present
+      when:
+        ansible_distribution == "Ubuntu"
+    - name: Install NTP on CentOS nodes
+      yum:
+        name: chrony
+        state: present
+      when:
+        ansible_distribution == "CentOS"
+    - name: Start and enable chrony on ubuntu nodes
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+      when:
+        ansible_distribution == "Ubuntu"
+    - name: Start and enable chrony on CentOS nodes
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+      when:
+        ansible_distribution == "CentOS"
