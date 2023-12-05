@@ -1,0 +1,40 @@
+---
+- name: Setup NTP and users
+  users: all
+  become: yes
+  tasks:
+    - name: Install packages in Ubuntu
+      apt:
+        name: "{{item}}"
+        state: present
+      when: ansible_distribution == "Ubuntu"
+      loop: "{{pkgs}}"
+    - name: Install packages in CentOS
+      yum:
+        name: "{{item}}"
+        state: present
+      when: ansible_distribution == "CentOS"
+      loop: "{{pkgs}}"
+    - name: Start and enable chrony on Ubuntu
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+      when: ansible_distribution == "Ubuntu"
+    - name: Start and enable chrony on CentOS
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+      when: ansible_distribution == "CentOS"
+    - name: add new group
+      group:
+        name: testgrp3
+        state: present
+    - name: add new users
+      user:
+        name: "{{item}}"
+        state: present
+        group: testgrp3
+      loop: "{{usrs}}"
+  
