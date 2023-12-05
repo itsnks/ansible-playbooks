@@ -22,6 +22,12 @@
         state: present
       when:
         ansible_distribution == "CentOS"
+      loop:
+        - chrony
+        - wget
+        - zip
+        - unzip
+        - curl
     - name: Start and enable chrony on ubuntu nodes
       service:
         name: chronyd
