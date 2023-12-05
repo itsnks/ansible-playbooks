@@ -1,6 +1,6 @@
 ---
 - name: Setup NTP and users
-  users: all
+  hosts: all
   become: yes
   tasks:
     - name: Install packages in Ubuntu
