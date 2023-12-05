@@ -48,3 +48,8 @@
         regexp: "#Banner none"
         line: "Banner /etc/motd"
         state: present
+    - name: Restarting sshd service
+      service:
+       name: sshd
+       state: restarted
+       enabled: yes
