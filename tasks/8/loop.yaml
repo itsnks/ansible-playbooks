@@ -5,10 +5,16 @@
   tasks:
     - name: Install NTP server on Ubuntu nodes
       apt:
-        name: chrony
+        name: {{item}}
         state: present
       when:
         ansible_distribution == "Ubuntu"
+      loop:
+        - chrony
+        - wget
+        - zip
+        - unzip
+        - curl
     - name: Install NTP on CentOS nodes
       yum:
         name: chrony
