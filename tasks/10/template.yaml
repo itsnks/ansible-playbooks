@@ -48,11 +48,8 @@
         regexp: "#Banner none"
         line: "Banner /etc/motd"
         state: present
-    - name: Restarting sshd service
-      service:
-       name: sshd
-       state: restarted
-       enabled: yes
+      notify:
+        Restarting sshd service
     - name: Chrony configs for Ubuntu nodes
       template:
         src: templates/ntp-ubuntu.conf.j2
@@ -73,3 +70,8 @@
         name: chronyd
         state: restarted
         enabled: yes
+    - name: Restarting sshd service
+      service:
+       name: sshd
+       state: restarted
+       enabled: yes
