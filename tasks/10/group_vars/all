@@ -11,5 +11,5 @@ usrs:
 - dev13
 
 ntp0: 0.np.pool.ntp.org
-ntp1 3.asia.pool.ntp.org
-ntp2 2.asia.pool.ntp.org
+ntp1: 3.asia.pool.ntp.org
+ntp2: 2.asia.pool.ntp.org
