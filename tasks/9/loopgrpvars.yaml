@@ -46,7 +46,4 @@
         name: "{{item}}"
         state: present
         groups: testgrp2
-      loop:
-        - dev1
-        - dev2
-        - dev3
+      loop: "{{unames}}"
