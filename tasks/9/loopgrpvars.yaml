@@ -1,0 +1,52 @@
+---
+- name: Install ntp services and add users using loop and group variables
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install packages on Ubuntu distribution
+      apt:
+        name: "{{item}}"
+        state: present
+      when: ansible_distribution == "Ubuntu"
+      loop:
+        - chrony
+        - wget
+        - zip
+        - unzip
+        - curl
+    - name: Install packages on CentOS distribution
+      yum:
+        name: "{{item}}"
+        state: present
+      when: ansible_distribution == "CentOS"
+      loop:
+        - chrony
+        - wget
+        - zip
+        - unzip
+        - curl
+    - name: Start and enable chrony on Ubuntu
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+      when: ansible_distribution == "Ubuntu"
+    - name: Start and enable chrony on CentOS
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+      when: ansible_distribution == "CentOS"
+    - name: Create new user group testgrp2
+      group:
+        name: testgrp2
+        state: present
+    - name: Added users to the group
+      user:
+        name: "{{item}}"
+        state: present
+        groups: testgrp2
+      loop:
+        - dev1
+        - dev2
+        - dev3
