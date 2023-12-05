@@ -1,3 +1,9 @@
+pkgs:
+- chrony
+- wget
+- zip
+- unzip
+
 unames:
 - dev1
 - dev2
