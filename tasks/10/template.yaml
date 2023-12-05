@@ -7,6 +7,7 @@
       apt:
         name: "{{item}}"
         state: present
+        update_cache: yes
       when: ansible_distribution == "Ubuntu"
       loop: "{{pkgs}}"
     - name: Install packages in CentOS
@@ -37,4 +38,8 @@
         state: present
         group: testgrp3
       loop: "{{usrs}}"
-  
+    - name: add banner message while ssh login
+      copy:
+        content: "This is the banner message!\nThe distribution in use is {{ansible_distribution}}\n"
+        dest: /etc/motd
+        
