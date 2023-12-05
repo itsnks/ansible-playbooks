@@ -58,14 +58,18 @@
         src: templates/ntp-ubuntu.conf.j2
         dest: /etc/chrony/chrony.conf
       when: ansible_distribution == "Ubuntu"
+      notify:
+        Restart chronyd service
     - name: Chrony configs for Centos nodes
       template:
         src: templates/ntp-centos.conf.j2
         dest: /etc/chrony.conf
       when: ansible_distribution == "CentOS"
+      notify:
+        Restart chronyd service
+  handlers:
     - name: Restart chronyd service
       service:
         name: chronyd
         state: restarted
         enabled: yes
-        
