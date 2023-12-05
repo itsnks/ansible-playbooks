@@ -42,4 +42,9 @@
       copy:
         content: "This is the banner message!\nThe distribution in use is {{ansible_distribution}}\n"
         dest: /etc/motd
-        
+    - name: update sshd config file
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "#Banner none"
+        line: "Banner /etc/motd"
+        state: present
