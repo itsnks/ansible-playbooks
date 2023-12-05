@@ -5,9 +5,9 @@
   tasks:
     - name: Install NTP server on Ubuntu nodes
       apt:
-        name: {{item}}
+        name: "{{item}}"
         state: present
-      update_cache: yes
+        update_cache: yes
       when:
         ansible_distribution == "Ubuntu"
       loop:
@@ -18,7 +18,7 @@
         - curl
     - name: Install NTP on CentOS nodes
       yum:
-        name: chrony
+        name: "{{item}}"
         state: present
       when:
         ansible_distribution == "CentOS"
@@ -42,3 +42,17 @@
         enabled: yes
       when:
         ansible_distribution == "CentOS"
+    - name: create a new usergroup
+      group:
+        name: testgrp1
+        state: present
+    - name: add users to the group
+      user:
+        name: "{{item}}"
+        state: present
+        groups: testgrp1
+      loop:
+        - test1
+        - test2
+        - test3
+        
