@@ -8,23 +8,13 @@
         name: "{{item}}"
         state: present
       when: ansible_distribution == "Ubuntu"
-      loop:
-        - chrony
-        - wget
-        - zip
-        - unzip
-        - curl
+      loop: "{{pkgs}}"
     - name: Install packages on CentOS distribution
       yum:
         name: "{{item}}"
         state: present
       when: ansible_distribution == "CentOS"
-      loop:
-        - chrony
-        - wget
-        - zip
-        - unzip
-        - curl
+      loop: "{{pkgs}}"
     - name: Start and enable chrony on Ubuntu
       service:
         name: chronyd
