@@ -1,0 +1,7 @@
+---
+- name: Perform tasks using roles
+  hosts: all
+  become: yes
+  roles:
+    src_files
+    
