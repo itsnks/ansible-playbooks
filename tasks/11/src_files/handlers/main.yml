@@ -1,2 +1,13 @@
 ---
 # handlers file for src_files
+- name: Restart chronyd service
+  service:
+    name: chronyd
+    state: restarted
+    enabled: yes
+- name: Restarting sshd service
+  service:
+    name: sshd
+    state: restarted
+    enabled: yes
+    
