@@ -11,3 +11,6 @@ usrs:
 - dev11
 - dev12
 - dev13
+
+chrony_centos_path: /etc/chrony.conf
+chrony_ubuntu_path: /etc/chrony/chrony.conf
