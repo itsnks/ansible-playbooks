@@ -1,2 +1,13 @@
 ---
 # defaults file for src_files
+pkgs:
+- chrony
+- curl
+- wget
+- zip
+- unzip
+
+usrs:
+- dev11
+- dev12
+- dev13
