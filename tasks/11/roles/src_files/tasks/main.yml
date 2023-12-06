@@ -1,0 +1,68 @@
+---
+# tasks file for src_files
+- name: Install packages in Ubuntu
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+  loop: "{{pkgs}}"
+- name: Install packages in CentOS
+  yum:
+    name: "{{item}}"
+    state: present
+  when: ansible_distribution == "CentOS"
+  loop: "{{pkgs}}"
+- name: Start and enable chrony on Ubuntu
+  service:
+    name: chronyd
+    state: started
+    enabled: yes
+  when: ansible_distribution == "Ubuntu"
+- name: Start and enable chrony on CentOS
+  service:
+    name: chronyd
+    state: started
+    enabled: yes
+  when: ansible_distribution == "CentOS"
+- name: add new group
+  group:
+    name: testgrp3
+    state: present
+- name: add new users
+  user:
+    name: "{{item}}"
+    state: present
+    group: testgrp3
+  loop: "{{usrs}}"
+- name: add banner message while ssh login
+  copy:
+    content: "This is the banner message!\nThe distribution in use is {{ansible_distribution}}\n"
+    dest: /etc/motd
+- name: update sshd config file
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "#Banner none"
+    line: "Banner /etc/motd"
+    state: present
+  notify:
+    Restarting sshd service
+- name: Chrony configs for Ubuntu nodes
+  template:
+    src: ntp-ubuntu.conf.j2
+    dest: "{{chrony_ubuntu_path}}"
+  when: ansible_distribution == "Ubuntu"
+  notify:
+    Restart chronyd service
+- name: Chrony configs for Centos nodes
+  template:
+    src: ntp-centos.conf.j2
+    dest: "{{chrony_centos_path}}"
+  when: ansible_distribution == "CentOS"
+  notify:
+    Restart chronyd service
+- name: copy files
+  copy:
+    src: test1.txt
+    dest: "{{file_path}}"
+    

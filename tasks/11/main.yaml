@@ -1,0 +1,7 @@
+---
+- name: perform tasks
+  hosts: all
+  become: yes
+  roles:
+   - src_files
+    
