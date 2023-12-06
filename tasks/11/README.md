@@ -1,7 +1,7 @@
 ## Roles
 
 ### Initialize roles
-- A role can be initialized using `ansible-galaxy init <role_name>'
+- A role can be initialized using `ansible-galaxy init <role_name>`
 
 To initialize the following command was used:
 ```

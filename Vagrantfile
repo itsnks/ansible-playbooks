@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
       # Provision each of the VMs.
       boxes.each do |opts|
         config.vm.define opts[:name] do |config|
-          config.vm.synced_folder ".", "/opt/vagrant", id: "vagrant-root", disabled: true
+          config.vm.synced_folder ".", "/opt/vagrant"
           config.ssh.insert_key = false
           config.vm.box = opts[:box]
           config.vm.hostname = opts[:name]
