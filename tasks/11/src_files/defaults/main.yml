@@ -14,3 +14,7 @@ usrs:
 
 chrony_centos_path: /etc/chrony.conf
 chrony_ubuntu_path: /etc/chrony/chrony.conf
+
+ntp0: 0.np.pool.ntp.org
+ntp1: 3.asia.pool.ntp.org
+ntp2: 2.asia.pool.ntp.org
